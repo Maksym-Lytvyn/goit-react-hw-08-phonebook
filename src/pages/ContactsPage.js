@@ -27,6 +27,7 @@ const ContactsPage = () => {
       <section>
         <ContactList />
       </section>
+
     </div>
   );
 };

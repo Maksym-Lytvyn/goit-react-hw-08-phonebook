@@ -10,18 +10,12 @@ import { PublicRoute } from './PublicRoute';
 import { useAuth } from 'redux/auth/useAuth';
 import Loader from './Loader/Loader';
 import ErrorPage from './ErrorPage/ErrorPage';
+import UserProfile from './UserProfile/UserProfile';
 
-const RegisterPage = lazy(() =>
-  import('../pages/RegisterPage')
-);
-const ContactsPage = lazy(() =>
-  import('../pages/ContactsPage')
-);
+const RegisterPage = lazy(() => import('../pages/RegisterPage'));
+const ContactsPage = lazy(() => import('../pages/ContactsPage'));
 
-const LoginPage = lazy(() =>
-  import('../pages/Login')
-);
-
+const LoginPage = lazy(() => import('../pages/Login'));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -30,7 +24,6 @@ export const App = () => {
   }, [dispatch]);
 
   const { isRefreshing, error } = useAuth();
-
 
   if (error) {
     return <ErrorPage />;
@@ -65,6 +58,10 @@ export const App = () => {
               <PrivateRoute redirectTo="/login" component={<ContactsPage />} />
             }
           />
+          <Route 
+            path="/contacts/profile"
+            element={
+            <UserProfile />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
